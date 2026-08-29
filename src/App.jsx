@@ -6,6 +6,7 @@ import SchoolSelectPage from "./pages/onboarding/SchoolSelectPage";
 import DepartmentDetailPage from "./pages/onboarding/DepartmentDetailPage";
 import KakaoCallbackPage from "./pages/oauth/KakaoCallbackPage";
 import HomePage from "./pages/home/HomePage";
+import MySchoolPage from "./pages/mySchool/MySchoolPage";
 import { SCHOOLS } from "./constants/schools";
 import useAuthStore from "./store/useAuthStore";
 import useOnboardingStore from "./store/useOnboardingStore";
@@ -74,6 +75,7 @@ function App() {
               }
             />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/my-school" element={<MySchoolPage />} />
           </Routes>
         </PageContainer>
 

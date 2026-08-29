@@ -1,3 +1,5 @@
+import Badge from "./Badge";
+
 // 홈 화면 상단 랭킹 요약 칩 (신촌 전체/단과대/학과 순위 등에서 재사용)
 
 function RankStatCard({ badgeLabel, title, value, subtext, accent = false, showDivider = false }) {
@@ -10,7 +12,7 @@ function RankStatCard({ badgeLabel, title, value, subtext, accent = false, showD
       }`}
     >
       <div className="flex flex-col items-center gap-1">
-        <span className="rounded bg-red-40 px-2 py-1 text-xs font-medium text-white">{badgeLabel}</span>
+        <Badge>{badgeLabel}</Badge>
         <div className="flex flex-col items-center gap-2 pb-3">
           <p className={`text-sm leading-5 font-bold ${textColor}`}>{title}</p>
           <p

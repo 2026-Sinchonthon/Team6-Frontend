@@ -3,19 +3,11 @@ import SummaryBanner from "../../components/ui/SummaryBanner";
 import Select from "../../components/ui/Select";
 import TextField from "../../components/ui/TextField";
 import Button from "../../components/ui/Button";
+import { useCollegeOptionsQuery } from "../../hooks/useMockQueries";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
-const COLLEGE_OPTIONS = [
-  { value: "engineering", label: "공과대학" },
-  { value: "architecture", label: "건축도시대학" },
-  { value: "business", label: "경영대학" },
-  { value: "humanities", label: "문과대학" },
-  { value: "law", label: "법과대학" },
-  { value: "education", label: "사범대학" },
-  { value: "art", label: "미술대학" },
-];
-
 function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
+  const { data: collegeOptions = [] } = useCollegeOptionsQuery(school?.id);
   const [college, setCollege] = useState("");
   const [department, setDepartment] = useState("");
 
@@ -46,7 +38,7 @@ function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
               label="단과대"
               placeholder="단과대를 선택해주세요"
               value={college}
-              options={COLLEGE_OPTIONS}
+              options={collegeOptions}
               onChange={setCollege}
             />
             <TextField
@@ -64,7 +56,7 @@ function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
           disabled={!isComplete}
           onClick={() =>
             onSubmit?.({
-              college: COLLEGE_OPTIONS.find((option) => option.value === college)?.label ?? college,
+              college: collegeOptions.find((option) => option.value === college)?.label ?? college,
               department,
             })
           }
