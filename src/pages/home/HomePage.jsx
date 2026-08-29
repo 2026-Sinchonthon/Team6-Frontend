@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RankStatCard from "../../components/ui/RankStatCard";
+import useAuthStore from "../../store/useAuthStore";
 import useOnboardingStore from "../../store/useOnboardingStore";
 import { useRankStatsQuery } from "../../hooks/useMockQueries";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
@@ -13,11 +15,21 @@ function formatElapsed(ms) {
 }
 
 function HomePage() {
+  const navigate = useNavigate();
+  const clearAuth = useAuthStore((state) => state.clearAuth);
   const school = useOnboardingStore((state) => state.school);
   const college = useOnboardingStore((state) => state.college);
   const department = useOnboardingStore((state) => state.department);
+  const resetOnboarding = useOnboardingStore((state) => state.resetOnboarding);
 
   const { data: rankStats, isLoading: isRankStatsLoading } = useRankStatsQuery();
+
+  function handleLogoClick() {
+    if (!window.confirm("로그아웃 하시겠습니까?")) return;
+    clearAuth();
+    resetOnboarding();
+    navigate("/", { replace: true });
+  }
 
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedMs, setElapsedMs] = useState(0);
@@ -39,10 +51,10 @@ function HomePage() {
     <div className="flex h-full flex-col bg-white">
       <div className={`flex flex-col gap-8 bg-red-40 px-5 pb-8 ${SAFE_AREA_TOP}`}>
         <div className="flex items-start justify-between">
-          <div className="flex items-center gap-1">
+          <button type="button" onClick={handleLogoClick} className="flex items-center gap-1">
             <img src="/images/splash/logo-mark.svg" alt="" className="h-[29px] w-[18px]" />
             <img src="/images/splash/logo-wordmark.svg" alt="Sin:Time" className="h-[21px] w-[84px]" />
-          </div>
+          </button>
           <div className="flex flex-col items-end gap-1">
             <p className="text-18 tracking-bold font-bold text-white">{school?.name ?? "학교 미선택"}</p>
             <p className="text-14 tracking-semibold font-semibold text-white">

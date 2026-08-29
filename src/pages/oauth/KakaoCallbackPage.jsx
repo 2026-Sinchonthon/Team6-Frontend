@@ -17,18 +17,19 @@ function KakaoCallbackPage() {
   useEffect(() => {
     const accessToken = searchParams.get("accessToken");
     const refreshToken = searchParams.get("refreshToken");
+    const isNewUser = searchParams.get("isNewUser") === "true";
     if (!accessToken || requestedRef.current) return;
     requestedRef.current = true;
 
     setAuth(accessToken, refreshToken);
 
+    if (isNewUser) {
+      navigate("/onboarding/school", { replace: true });
+      return;
+    }
+
     getMySummary()
       .then((summary) => {
-        if (!summary.schoolId) {
-          navigate("/onboarding/school", { replace: true });
-          return;
-        }
-
         hydrateOnboarding(summary);
         navigate("/home", { replace: true });
       })
