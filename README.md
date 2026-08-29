@@ -83,6 +83,22 @@
 
 ### 📋 폴더 구조
 
+- Frontend
+```
+📦 frontend
+ ┣ 📂 public                                         # 이미지, 아이콘 등
+ ┣ 📂 src                                                        # 실제 소스 코드
+ ┃ ┣ 📂 api                                                 # Axios 인스턴스 및 API 호출 함수
+ ┃ ┣ 📂 components                                 # 재사용 가능한 UI 컴포넌트
+ ┃ ┣ 📂 constants                                  # 변하지 않는 상수, mockdata 모음
+ ┃ ┣ 📂 lib                                         # 범용 유틸 함수 모음
+ ┃ ┣ 📂 hooks                                             # 커스텀 훅
+ ┃ ┣ 📂 pages                                             # 각 페이지 컴포넌트
+ ┃ ┣ 📂 store                                              # Zustand 전역 상태 관리 저장소
+ ┃ ┗ 📄 index.css                                       # 스타일링
+ ┃ ┣ 📄 App.jsx                                         # 최상위 컴포넌트 (라우팅 설정)
+ ┃ ┗ 📄 main.jsx                                        # React 앱 진입점
+```
 
 
 ---
