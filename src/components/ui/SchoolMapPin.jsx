@@ -5,12 +5,12 @@ function SchoolMapPin({ school, entry, selected, onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className="absolute flex flex-col items-center"
+      className={`group absolute flex flex-col items-center ${selected ? "z-10" : "hover:z-10"}`}
       style={{ top: entry.position.top, left: entry.position.left }}
     >
       {entry.crown && <img src="/icons/crown.svg" alt="" className="size-9" />}
       <span
-        className={`block size-15 rounded-full bg-gray-30 bg-cover bg-center transition-transform ${
+        className={`block size-15 rounded-full bg-gray-30 bg-cover bg-center transition-transform group-hover:scale-110 ${
           selected ? "scale-110" : ""
         }`}
         style={{ backgroundImage: `url(${school.logo})`, boxShadow: entry.glow }}

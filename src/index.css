@@ -64,3 +64,18 @@
   --color-violet-20: #c2a9ef;
   --color-violet-45: #753ddb;
 }
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  a,
+  label {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"]:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}

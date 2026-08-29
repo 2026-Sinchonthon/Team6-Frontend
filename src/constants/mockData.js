@@ -85,6 +85,43 @@ export const MOCK_SINCHON_LEAGUE = [
   },
 ];
 
+export const COUPON_CATEGORIES = [
+  { value: "all", label: "전체" },
+  { value: "study-cafe", label: "스터디카페" },
+  { value: "food-cafe", label: "식당/카페" },
+  { value: "print", label: "프린트" },
+];
+
+export const MOCK_COUPONS = [
+  {
+    id: "zaksim-sinchon",
+    category: "study-cafe",
+    name: "작심스터디카페 신촌숲길점",
+    image: "/images/partnership/venue-zaksim.png",
+    discount: "시간권 20% 할인",
+    status: "현재 홍익대 15명 열공 중",
+    mapUrl: "https://kko.to/F5kDJL11e2",
+  },
+  {
+    id: "eagle-cafe",
+    category: "food-cafe",
+    name: "독수리다방",
+    image: "/images/partnership/venue-eagle.jpg",
+    discount: "1위 학교 음료 15%",
+    status: "현재 신촌 대학생 42명 집중 중",
+    mapUrl: "https://kko.to/s-46CSdkKC",
+  },
+  {
+    id: "mibundang-sinchon",
+    category: "food-cafe",
+    name: "미분당 신촌본점",
+    image: "/images/partnership/venue-mibundang.jpg",
+    discount: "결제 금액 5% 할인",
+    mapUrl: "https://kko.to/1ns4xGtAjx",
+    status: "Sin:Time 유저 누구나 상시 혜택",
+  },
+];
+
 export const MOCK_COLLEGE_OPTIONS = [
   { value: "engineering", label: "공과대학" },
   { value: "architecture", label: "건축도시대학" },
