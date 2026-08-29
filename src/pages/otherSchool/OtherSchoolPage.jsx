@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useOnboardingStore from "../../store/useOnboardingStore";
-import { useSinchonLeagueQuery } from "../../hooks/useMockQueries";
+import { useOtherSchoolsQuery } from "../../hooks/useSchoolQueries";
 import { SCHOOLS } from "../../constants/schools";
+import { SCHOOL_MAP_LAYOUT } from "../../constants/mockData";
 import SchoolMapPin from "../../components/ui/SchoolMapPin";
 import SchoolInfoPopup from "../../components/ui/SchoolInfoPopup";
 
@@ -21,8 +22,31 @@ function buildMessage({ entry, isMine, myEntry, mySchool }) {
 
 function OtherSchoolPage() {
   const mySchool = useOnboardingStore((state) => state.school);
-  const { data: league = [] } = useSinchonLeagueQuery();
+  const { data: otherSchools = [] } = useOtherSchoolsQuery();
   const [selectedSchoolId, setSelectedSchoolId] = useState(null);
+
+  // GET /api/other-schools는 숫자 schoolId로 응답하고, 지도 픽셀 좌표는 프론트 문자열 id 기준이라
+  // 학교 이름으로 두 쪽을 이어붙인다 (백엔드에 숫자 id 매핑 API가 아직 없음)
+  const league = useMemo(
+    () =>
+      [...otherSchools]
+        .sort((a, b) => b.totalStudyMinutes - a.totalStudyMinutes)
+        .map((entry, index) => {
+          const school = SCHOOLS.find((candidate) => candidate.name === entry.schoolName);
+          if (!school) return null;
+
+          return {
+            schoolId: school.id,
+            rank: index + 1,
+            crown: index === 0,
+            weeklyHours: Math.round(entry.totalStudyMinutes / 60),
+            liveCount: entry.activeUserCount,
+            ...SCHOOL_MAP_LAYOUT[school.id],
+          };
+        })
+        .filter(Boolean),
+    [otherSchools],
+  );
 
   const myEntry = league.find((entry) => entry.schoolId === mySchool?.id);
   const selectedEntry = league.find((entry) => entry.schoolId === selectedSchoolId);

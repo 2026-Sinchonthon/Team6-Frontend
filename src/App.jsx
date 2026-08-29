@@ -12,6 +12,8 @@ import PartnershipPage from "./pages/partnership/PartnershipPage";
 import { SCHOOLS } from "./constants/schools";
 import useAuthStore from "./store/useAuthStore";
 import useOnboardingStore from "./store/useOnboardingStore";
+import { useOtherSchoolsQuery } from "./hooks/useSchoolQueries";
+import { useUpdateSchoolMutation } from "./hooks/useUserQueries";
 
 const GNB_PATHS = ["/home", "/my-school", "/other-school", "/partnership", "/my"];
 
@@ -26,6 +28,8 @@ function App() {
   const setCollege = useOnboardingStore((state) => state.setCollege);
   const setDepartment = useOnboardingStore((state) => state.setDepartment);
   const completeOnboarding = useOnboardingStore((state) => state.completeOnboarding);
+  const { data: otherSchools = [] } = useOtherSchoolsQuery();
+  const updateSchoolMutation = useUpdateSchoolMutation();
 
   return (
     <div className="flex min-h-screen justify-center bg-[#F1F3F5]">
@@ -55,7 +59,14 @@ function App() {
               element={
                 <SchoolSelectPage
                   onNext={(schoolId) => {
-                    setSchool(SCHOOLS.find((candidate) => candidate.id === schoolId));
+                    const selected = SCHOOLS.find((candidate) => candidate.id === schoolId);
+                    setSchool(selected);
+
+                    const remoteSchoolId = otherSchools.find(
+                      (candidate) => candidate.schoolName === selected?.name,
+                    )?.schoolId;
+                    if (remoteSchoolId) updateSchoolMutation.mutate(remoteSchoolId);
+
                     navigate("/onboarding/department");
                   }}
                 />

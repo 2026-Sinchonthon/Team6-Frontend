@@ -38,7 +38,11 @@ function refreshAccessToken() {
 
 apiClient.interceptors.response.use(
   (response) => {
-    const { success, data, error } = response.data;
+    const body = response.data;
+    // 일부 엔드포인트(timer, health)는 {success,data,error} 봉투 없이 원시 값/빈 응답을 그대로 반환한다
+    if (!body || typeof body !== "object" || !("success" in body)) return body;
+
+    const { success, data, error } = body;
     if (!success) return Promise.reject(new Error(error?.message ?? "요청에 실패했습니다."));
     return data;
   },
