@@ -55,7 +55,7 @@
   </tr>
   <tr align="center">
     <td>
-      추후작성
+      UI디자인 및 기획 총괄
     </td>
     <td>
       상태 관리<br>
