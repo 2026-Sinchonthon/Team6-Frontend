@@ -5,6 +5,7 @@ import {
   MOCK_DEPARTMENT_RANKING,
   MOCK_RANK_STATS,
   MOCK_SCHOOL_OVERVIEW,
+  MOCK_SINCHON_LEAGUE,
 } from "../constants/mockData";
 
 // 백엔드 연동 시 이 파일의 queryFn만 실제 API 호출(src/api)로 교체하기
@@ -38,5 +39,12 @@ export function useCollegeRankingQuery(scope) {
   return useQuery({
     queryKey: ["collegeRanking", scope],
     queryFn: () => mockFetch(scope === "department" ? MOCK_DEPARTMENT_RANKING : MOCK_COLLEGE_RANKING),
+  });
+}
+
+export function useSinchonLeagueQuery() {
+  return useQuery({
+    queryKey: ["sinchonLeague"],
+    queryFn: () => mockFetch(MOCK_SINCHON_LEAGUE),
   });
 }
