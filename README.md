@@ -7,6 +7,76 @@
 
 ### 팀원 소개
 
+<table>
+  <tr align="center">
+    <th>박성찬</th>
+    <th>신지민</th>
+    <th>이정준</th>
+    <th>권보미</th>
+    <th>최지우</th>
+    <th>피윤혁</th>
+  </tr>
+  <tr align="center">
+    <td><a href="https://github.com/matia0523">@matia0523</a></td>
+    <td><a href="https://github.com/TuttoShin">@TuttoShin</a></td>
+    <td><a href="https://github.com/jngjnl1812">@jngjnl1812</a></td>
+    <td><a href="https://github.com/bomee1123">@bomee1123</a></td>
+    <td><a href="https://github.com/jui-ced">@jui-ced</a></td>
+    <td><a href="https://github.com/Yun-pix5">@Yun-pix</a></td>
+  </tr>
+  <tr align="center">
+    <td>🍉</td>
+    <td>🍰</td>
+    <td>🐯</td>
+    <td>🐢</td>
+    <td>🦁</td>
+    <td>🐳</td>
+  </tr>
+  <tr align="center">
+    <td><code>PM</code></td>
+    <td><code>FE</code></td>
+    <td><code>FE</code></td>
+    <td><code>BE</code></td>
+    <td><code>BE</code></td>
+    <td><code>BE</code></td>
+  </tr>
+  <tr align="center">
+    <td>
+      <b>[ 기획 ]</b><br>
+      서비스 이름<br>
+      서비스 소개<br>
+      타겟 사용자 설정<br>
+      차별화 포인트<br>
+      IA + 기능 명세서<br>
+      사용자 흐름<br>
+      BM 설계<br><br>
+      <b>[ 디자인 ]</b><br>
+      로고<br>
+      디자인 시스템<br>
+      와이어프레임<br>
+      프로토타입<br>
+      발표 자료
+    </td>
+    <td>
+          
+    </td>
+        
+    <td>
+          
+    </td>
+    <td>
+      
+    </td>
+    <td>
+      
+    </td>
+    <td>
+      
+    </td>
+  </tr>
+</table>
+<br>
+
 <br>
 
 ### 핵심 기능
