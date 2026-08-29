@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import RankStatCard from "../../components/ui/RankStatCard";
 import useAuthStore from "../../store/useAuthStore";
 import useOnboardingStore from "../../store/useOnboardingStore";
-import { useRankStatsQuery } from "../../hooks/useMockQueries";
+import { useRankingSummaryQuery } from "../../hooks/useRankingQueries";
 import { useStartTimerMutation, useStopTimerMutation, useTodayStudySecondsQuery } from "../../hooks/useTimerQueries";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
@@ -23,7 +23,7 @@ function HomePage() {
   const department = useOnboardingStore((state) => state.department);
   const resetOnboarding = useOnboardingStore((state) => state.resetOnboarding);
 
-  const { data: rankStats, isLoading: isRankStatsLoading } = useRankStatsQuery();
+  const { data: rankStats, isLoading: isRankStatsLoading } = useRankingSummaryQuery();
   const { data: todaySeconds = 0 } = useTodayStudySecondsQuery();
   const startTimer = useStartTimerMutation();
   const stopTimer = useStopTimerMutation();

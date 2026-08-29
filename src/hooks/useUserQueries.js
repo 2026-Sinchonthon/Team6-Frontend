@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getMySummary, updateMyDepartment, updateMySchool } from "../api/user";
+import { getMySummary, updateMyCollege, updateMyDepartment, updateMySchool } from "../api/user";
 import useAuthStore from "../store/useAuthStore";
 
 export function useUserSummaryQuery() {
@@ -17,6 +17,15 @@ export function useUpdateSchoolMutation() {
 
   return useMutation({
     mutationFn: updateMySchool,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["userSummary"] }),
+  });
+}
+
+export function useUpdateCollegeMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateMyCollege,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["userSummary"] }),
   });
 }

@@ -1,19 +1,36 @@
 import { useState } from "react";
 import useOnboardingStore from "../../store/useOnboardingStore";
-import { useCollegeRankingQuery, useSchoolOverviewQuery } from "../../hooks/useMockQueries";
+import { useCollegeRankingQuery, useDepartmentRankingQuery } from "../../hooks/useRankingQueries";
+import { useMyOverviewQuery } from "../../hooks/useSchoolOverviewQuery";
 import Badge from "../../components/ui/Badge";
 import FilterChip from "../../components/ui/FilterChip";
 import RankingRow from "../../components/ui/RankingRow";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
+// 백엔드 랭킹 응답 -> RankingRow가 기대하는 표시용 필드로 변환
+// (trend는 이전 기간 대비 증감 데이터가 없어 항상 생략됨)
+function toRankingRowProps(item) {
+  return {
+    rank: item.rank,
+    name: item.name,
+    status: `현재 ${item.activeUserCount}명 집중중`,
+    hours: Math.round(item.totalStudyHours),
+    isMine: item.isMine,
+  };
+}
+
 function MySchoolPage() {
   const school = useOnboardingStore((state) => state.school);
   const college = useOnboardingStore((state) => state.college);
   const department = useOnboardingStore((state) => state.department);
+  const remoteSchoolId = school?.remoteId ?? school?.id;
 
-  const { data: overview, isLoading: isOverviewLoading } = useSchoolOverviewQuery();
+  const { data: overview, isLoading: isOverviewLoading } = useMyOverviewQuery();
+
   const [scope, setScope] = useState("college");
-  const { data: ranking = [] } = useCollegeRankingQuery(scope);
+  const { data: collegeRanking = [] } = useCollegeRankingQuery(remoteSchoolId);
+  const { data: departmentRanking = [] } = useDepartmentRankingQuery(college?.id);
+  const ranking = (scope === "department" ? departmentRanking : collegeRanking).map(toRankingRowProps);
 
   return (
     <div className="flex flex-col gap-2 bg-gray-05">
