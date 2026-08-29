@@ -60,7 +60,15 @@ function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
       </div>
 
       <div className="flex shrink-0 flex-col gap-3 px-5 pb-6">
-        <Button disabled={!isComplete} onClick={() => onSubmit?.({ college, department })}>
+        <Button
+          disabled={!isComplete}
+          onClick={() =>
+            onSubmit?.({
+              college: COLLEGE_OPTIONS.find((option) => option.value === college)?.label ?? college,
+              department,
+            })
+          }
+        >
           Sin:Time 시작하기
         </Button>
         <p className="text-12 tracking-regular text-center text-gray-60">
