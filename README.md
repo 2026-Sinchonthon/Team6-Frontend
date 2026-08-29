@@ -83,7 +83,7 @@
 
 ### 📋 폴더 구조
 
-- Frontend
+- **Frontend**
 ```
 frontend/
 ├── src/
@@ -102,6 +102,8 @@ frontend/
 ├── package.json      
 └── README.md
 ```
+
+- **Backend** 
 
 
 ---
