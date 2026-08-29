@@ -1,5 +1,6 @@
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import PageContainer from "./components/PageContainer";
+import BottomNav from "./components/BottomNav";
 import SplashPage from "./pages/onboarding/SplashPage";
 import SchoolSelectPage from "./pages/onboarding/SchoolSelectPage";
 import DepartmentDetailPage from "./pages/onboarding/DepartmentDetailPage";
@@ -10,8 +11,12 @@ import { getKakaoAuthorizeUrl } from "./lib/kakao";
 import useAuthStore from "./store/useAuthStore";
 import useOnboardingStore from "./store/useOnboardingStore";
 
+const GNB_PATHS = ["/home", "/my-school", "/other-school", "/partnership", "/my"];
+
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const showBottomNav = GNB_PATHS.includes(location.pathname);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const isOnboarded = useOnboardingStore((state) => state.isOnboarded);
   const school = useOnboardingStore((state) => state.school);
@@ -33,7 +38,10 @@ function App() {
                 isAuthenticated && isOnboarded ? (
                   <Navigate to="/home" replace />
                 ) : (
-                  <SplashPage onKakaoLogin={() => (window.location.href = getKakaoAuthorizeUrl())} />
+                  <SplashPage
+                    onKakaoLogin={() => (window.location.href = getKakaoAuthorizeUrl())}
+                    onSkipLogin={() => navigate("/onboarding/school")}
+                  />
                 )
               }
             />
@@ -68,7 +76,7 @@ function App() {
           </Routes>
         </PageContainer>
 
-        {/* GNB */}
+        {showBottomNav && <BottomNav />}
       </div>
     </div>
   );
