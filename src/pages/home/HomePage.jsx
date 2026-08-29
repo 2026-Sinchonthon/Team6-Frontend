@@ -73,7 +73,7 @@ function HomePage() {
           <div className="flex flex-col items-end gap-1">
             <p className="text-18 tracking-bold font-bold text-white">{school?.name ?? "학교 미선택"}</p>
             <p className="text-14 tracking-semibold font-semibold text-white">
-              {[college, department].filter(Boolean).join(" ") || "소속 미입력"}
+              {[college?.name, department?.name].filter(Boolean).join(" ") || "소속 미입력"}
             </p>
           </div>
         </div>
@@ -88,13 +88,13 @@ function HomePage() {
           />
           <RankStatCard
             badgeLabel="홍익대 단과대"
-            title={college ?? "단과대"}
+            title={college?.name ?? "단과대"}
             value={isRankStatsLoading ? "-" : `${rankStats.collegeRank.rank}위`}
             subtext={isRankStatsLoading ? "-" : `총 ${rankStats.collegeRank.totalHours.toLocaleString()}h`}
             showDivider
           />
           <RankStatCard
-            badgeLabel={department ?? "학과"}
+            badgeLabel={department?.name ?? "학과"}
             title="나의 순위"
             value={isRankStatsLoading ? "-" : `${rankStats.myRank.rank}위`}
             subtext={isRankStatsLoading ? "-" : `내 누적 ${rankStats.myRank.cumulativeHours}h`}
@@ -129,7 +129,8 @@ function HomePage() {
 
         <div className="rounded-xl bg-red-05 px-2 py-2">
           <p className="text-xs font-semibold text-[#4a5568]">
-            🔥 {college ?? "단과대"} 내 {isRankStatsLoading ? "-" : `${rankStats.collegeRank.rank}위`} 달성 중!
+            🔥 {college?.name ?? "단과대"} 내 {isRankStatsLoading ? "-" : `${rankStats.collegeRank.rank}위`} 달성
+            중!
           </p>
         </div>
       </div>

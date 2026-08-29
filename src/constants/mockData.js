@@ -103,6 +103,18 @@ export const MOCK_COUPONS = [
   },
 ];
 
+export const MOCK_USER_PROFILE = {
+  name: "박성찬",
+  loginProvider: "카카오톡",
+  loginEmail: "HongikPerson123@kakao.com",
+};
+
+export const MOCK_STUDY_RECORD = {
+  departmentPercentile: 12,
+  totalTime: "124h 30m",
+  dailyAverage: "3h 15m",
+};
+
 export const MOCK_COLLEGE_OPTIONS = [
   { value: "engineering", label: "공과대학" },
   { value: "architecture", label: "건축도시대학" },

@@ -22,7 +22,7 @@ const NAV_ITEMS = [
     icon: "/icons/gnb/partnership.svg",
     activeIcon: "/icons/gnb/partnership-active.svg",
   },
-  { path: "/my", label: "마이", icon: "/icons/gnb/my.svg" },
+  { path: "/my", label: "마이", icon: "/icons/gnb/my.svg", activeIcon: "/icons/gnb/my-active.svg" },
 ];
 
 function BottomNav() {
