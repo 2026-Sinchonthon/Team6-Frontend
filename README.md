@@ -180,6 +180,7 @@ backend/
       ├── exception/       — BusinessException, ErrorCode, GlobalExceptionHandler                                                                                
       └── common/          — ApiResponse(공통 응답 포맷), BaseTimeEntity
 ```
+---
 
 ### **도메인 구성**
 
