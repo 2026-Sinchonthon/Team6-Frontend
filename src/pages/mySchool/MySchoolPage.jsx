@@ -37,9 +37,9 @@ function MySchoolPage() {
             </p>
           </div>
 
-          <div className="flex h-[78px] items-center justify-between rounded-xl border border-[#d9d9d9] px-6 py-4">
+          <div className="flex items-center justify-between rounded-xl border border-[#d9d9d9] px-6 py-4">
             <div className="flex flex-col gap-1">
-              <div className="flex items-baseline gap-1">
+              <div className="flex flex-col">
                 <span className="text-base font-bold text-black">{school?.name ?? "학교 미선택"}</span>
                 <span className="text-sm text-gray-60">{school?.englishName}</span>
               </div>
