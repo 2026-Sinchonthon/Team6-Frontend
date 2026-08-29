@@ -8,6 +8,8 @@ function MyPage({ onEditProfile, onOpenAccountSettings }) {
   const { data } = useMyPageQuery();
   const profile = data?.profile;
   const record = data?.studyRecord;
+  // ProfileCard가 이름 뒤에 "님"을 직접 붙여 표시하므로, displayName에 이미 붙어 있으면 중복 제거
+  const displayName = profile?.displayName?.replace(/님$/, "");
 
   return (
     <div className={`flex flex-col gap-14 bg-white px-5 pb-10 ${SAFE_AREA_TOP}`}>
@@ -15,7 +17,7 @@ function MyPage({ onEditProfile, onOpenAccountSettings }) {
         <h1 className="text-2xl leading-9 font-bold text-black">마이페이지</h1>
         <ProfileCard
           imageSrc={profile?.profileImageUrl}
-          name={profile?.displayName ?? "회원"}
+          name={displayName ?? "회원"}
           affiliation={profile?.affiliation ?? "소속 미입력"}
           onEdit={onEditProfile}
         />
