@@ -55,7 +55,8 @@
   </tr>
   <tr align="center">
     <td>
-      UI디자인 및 기획 총괄
+      UI 디자인<br>
+      기획 총괄
     </td>
     <td>
       상태 관리<br>
