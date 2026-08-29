@@ -24,7 +24,9 @@ const useOnboardingStore = create(
       // school/college/department는 어느 경로로 채워지든 항상 { id, name } 형태로 통일한다
       // (수동 온보딩 경로는 App.jsx/DepartmentDetailPage에서, 여기(백엔드 요약 응답)에서는 아래에서 맞춘다)
       hydrate: ({ name, schoolId, schoolName, collegeId, collegeName, departmentId, departmentName }) => {
-        const localSchool = SCHOOLS.find((candidate) => candidate.id === schoolId || candidate.name === schoolName);
+        const localSchool = SCHOOLS.find(
+          (candidate) => candidate.remoteId === schoolId || candidate.name === schoolName,
+        );
 
         set({
           name: name ?? null,

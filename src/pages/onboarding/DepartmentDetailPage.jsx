@@ -3,15 +3,42 @@ import SummaryBanner from "../../components/ui/SummaryBanner";
 import Select from "../../components/ui/Select";
 import TextField from "../../components/ui/TextField";
 import Button from "../../components/ui/Button";
-import { useCollegeOptionsQuery } from "../../hooks/useMockQueries";
+import { useCollegesQuery } from "../../hooks/useSchoolCatalogQueries";
+import { useUpdateCollegeMutation, useUpdateDepartmentMutation } from "../../hooks/useUserQueries";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
 function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
-  const { data: collegeOptions = [] } = useCollegeOptionsQuery(school?.id);
+  // school.remoteId: 백엔드 schoolId(constants/schools.js 참고). 없으면(백엔드 요약 응답에서
+  // 로컬 목록에 없는 학교로 채워진 경우) school.id가 이미 숫자 id이므로 그걸 그대로 쓴다.
+  const remoteSchoolId = school?.remoteId ?? school?.id;
+  const { data: colleges = [] } = useCollegesQuery(remoteSchoolId);
+  const collegeOptions = colleges.map((collegeItem) => ({ value: collegeItem.id, label: collegeItem.name }));
+
+  const updateCollegeMutation = useUpdateCollegeMutation();
+  const updateDepartmentMutation = useUpdateDepartmentMutation();
+
   const [college, setCollege] = useState("");
   const [department, setDepartment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isComplete = Boolean(college) && department.trim().length > 0;
+
+  async function handleSubmit() {
+    setIsSubmitting(true);
+    try {
+      await updateCollegeMutation.mutateAsync(college);
+      await updateDepartmentMutation.mutateAsync(department.trim());
+    } catch (err) {
+      window.alert(err.message ?? "소속 저장에 실패했습니다.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    onSubmit?.({
+      college: { id: college, name: collegeOptions.find((option) => option.value === college)?.label ?? college },
+      department: { id: null, name: department.trim() },
+    });
+  }
 
   return (
     <div className={`flex h-full flex-col ${SAFE_AREA_TOP}`}>
@@ -52,18 +79,7 @@ function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
       </div>
 
       <div className="flex shrink-0 flex-col gap-3 px-5 pb-6">
-        <Button
-          disabled={!isComplete}
-          onClick={() =>
-            onSubmit?.({
-              college: {
-                id: college,
-                name: collegeOptions.find((option) => option.value === college)?.label ?? college,
-              },
-              department: { id: null, name: department },
-            })
-          }
-        >
+        <Button disabled={!isComplete || isSubmitting} onClick={handleSubmit}>
           Sin:Time 시작하기
         </Button>
         <p className="text-12 tracking-regular text-center text-gray-60">

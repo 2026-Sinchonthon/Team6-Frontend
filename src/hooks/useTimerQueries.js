@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getTodayStudySeconds, startTimer, stopTimer } from "../api/timer";
+import { getTodayStudySeconds, pauseTimer, resumeTimer, startTimer, stopTimer } from "../api/timer";
 import { getMyStats } from "../api/stats";
 import useAuthStore from "../store/useAuthStore";
 
@@ -8,7 +8,7 @@ export function useTodayStudySecondsQuery() {
 
   return useQuery({
     queryKey: ["todayStudySeconds", userId],
-    queryFn: () => getTodayStudySeconds(userId),
+    queryFn: getTodayStudySeconds,
     enabled: Boolean(userId),
   });
 }
@@ -18,14 +18,21 @@ export function useMyStatsQuery() {
 
   return useQuery({
     queryKey: ["myStats", userId],
-    queryFn: () => getMyStats(userId),
+    queryFn: getMyStats,
     enabled: Boolean(userId),
   });
 }
 
 export function useStartTimerMutation() {
-  const userId = useAuthStore((state) => state.userId);
-  return useMutation({ mutationFn: () => startTimer(userId) });
+  return useMutation({ mutationFn: startTimer });
+}
+
+export function usePauseTimerMutation() {
+  return useMutation({ mutationFn: pauseTimer });
+}
+
+export function useResumeTimerMutation() {
+  return useMutation({ mutationFn: resumeTimer });
 }
 
 export function useStopTimerMutation() {
@@ -33,7 +40,7 @@ export function useStopTimerMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => stopTimer(userId),
+    mutationFn: stopTimer,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todayStudySeconds", userId] });
       queryClient.invalidateQueries({ queryKey: ["myStats", userId] });

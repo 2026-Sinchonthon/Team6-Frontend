@@ -1,11 +1,11 @@
 import useAuthStore from "../../store/useAuthStore";
 import useOnboardingStore from "../../store/useOnboardingStore";
-import { useUserProfileQuery } from "../../hooks/useMockQueries";
+import { useMyPageProfileQuery } from "../../hooks/useMyPageQueries";
 import ListItem from "../../components/ui/ListItem";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
 function AccountSettingsPage({ onBack, onLoggedOut }) {
-  const { data: profile } = useUserProfileQuery();
+  const { data: profile } = useMyPageProfileQuery();
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const resetOnboarding = useOnboardingStore((state) => state.resetOnboarding);
 

@@ -14,7 +14,6 @@ import AccountSettingsPage from "./pages/mypage/AccountSettingsPage";
 import { SCHOOLS } from "./constants/schools";
 import useAuthStore from "./store/useAuthStore";
 import useOnboardingStore from "./store/useOnboardingStore";
-import { useOtherSchoolsQuery } from "./hooks/useSchoolQueries";
 import { useUpdateSchoolMutation } from "./hooks/useUserQueries";
 
 const GNB_PATHS = ["/home", "/my-school", "/other-school", "/partnership", "/my"];
@@ -30,7 +29,6 @@ function App() {
   const setCollege = useOnboardingStore((state) => state.setCollege);
   const setDepartment = useOnboardingStore((state) => state.setDepartment);
   const completeOnboarding = useOnboardingStore((state) => state.completeOnboarding);
-  const { data: otherSchools = [] } = useOtherSchoolsQuery();
   const updateSchoolMutation = useUpdateSchoolMutation();
 
   return (
@@ -50,7 +48,6 @@ function App() {
                     onKakaoLogin={() =>
                       (window.location.href = `${import.meta.env.VITE_API_BASE_URL}/oauth2/authorization/kakao`)
                     }
-                    onSkipLogin={() => navigate("/onboarding/school")}
                   />
                 )
               }
@@ -64,10 +61,7 @@ function App() {
                     const selected = SCHOOLS.find((candidate) => candidate.id === schoolId);
                     setSchool(selected);
 
-                    const remoteSchoolId = otherSchools.find(
-                      (candidate) => candidate.schoolName === selected?.name,
-                    )?.schoolId;
-                    if (remoteSchoolId) updateSchoolMutation.mutate(remoteSchoolId);
+                    if (selected?.remoteId) updateSchoolMutation.mutate(selected.remoteId);
 
                     navigate("/onboarding/department");
                   }}
