@@ -21,6 +21,7 @@ function SchoolSelectPage({ onNext }) {
           {SCHOOLS.map((school) => (
             <SelectableCard
               key={school.id}
+              imageSrc={school.logo}
               title={school.name}
               subtitle={school.englishName}
               selected={selectedId === school.id}

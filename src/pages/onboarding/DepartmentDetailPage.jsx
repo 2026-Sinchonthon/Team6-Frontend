@@ -25,7 +25,7 @@ function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
 
         <div className="mt-7 flex flex-col gap-15">
           <SummaryBanner
-            imageSrc={school?.imageSrc}
+            imageSrc={school?.logo}
             label="선택한 대학교"
             title={school?.name ?? "홍익대학교"}
             subtitle={school?.englishName ?? "Hongik University"}
