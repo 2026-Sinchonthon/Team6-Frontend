@@ -35,55 +35,36 @@ export const MOCK_DEPARTMENT_RANKING = [
   { name: "목조형가구학과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
 ];
 
-// 다른 학교(신촌 리그) 지도 화면 — schoolId는 constants/schools.js의 SCHOOLS[].id와 매칭
-export const MOCK_SINCHON_LEAGUE = [
-  {
-    schoolId: "ewha",
-    rank: 1,
-    weeklyHours: 32150,
-    liveCount: 850,
+// 다른 학교(신촌 리그) 지도 화면의 지도 이미지 위 픽셀 좌표/색상 — 실제 위경도로는 계산할 수 없는
+// 디자인 전용 값이라 schoolId(constants/schools.js의 SCHOOLS[].id)별로 고정해서 보관한다.
+// 순위/누적시간/실시간 인원 등 동적인 값은 GET /api/other-schools 응답으로 대체한다.
+export const SCHOOL_MAP_LAYOUT = {
+  ewha: {
     glow: "0px 0px 60px 60px #a2caad",
     position: { top: "437px", left: "calc(83.33% - 15px)" },
     popupPosition: { top: "191px", left: "39px" },
-    crown: true,
   },
-  {
-    schoolId: "hongik",
-    rank: 2,
-    weeklyHours: 38900,
-    liveCount: 950,
+  hongik: {
     glow: "0px 0px 60px 20px #1833db",
     position: { top: "635px", left: "40px" },
     popupPosition: { top: "315px", left: "20px" },
   },
-  {
-    schoolId: "sogang",
-    rank: 3,
-    weeklyHours: 31200,
-    liveCount: 780,
+  sogang: {
     glow: "0px 0px 40px 20px #f33",
     position: { top: "693px", left: "calc(66.67% + 32px)" },
     popupPosition: { top: "373px", left: "90px" },
   },
-  {
-    schoolId: "yonsei",
-    rank: 4,
-    weeklyHours: 25800,
-    liveCount: 650,
+  yonsei: {
     glow: "0px 0px 60px 20px #9fb8d6",
     position: { top: "344px", left: "calc(66.67% - 8px)" },
     popupPosition: { top: "442px", left: "90px" },
   },
-  {
-    schoolId: "myongji",
-    rank: 5,
-    weeklyHours: 19400,
-    liveCount: 420,
+  myongji: {
     glow: "0px 0px 20px 20px #abc3de",
     position: { top: "139px", left: "24px" },
     popupPosition: { top: "237px", left: "8px" },
   },
-];
+};
 
 export const COUPON_CATEGORIES = [
   { value: "all", label: "전체" },

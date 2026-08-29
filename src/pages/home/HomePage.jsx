@@ -4,6 +4,7 @@ import RankStatCard from "../../components/ui/RankStatCard";
 import useAuthStore from "../../store/useAuthStore";
 import useOnboardingStore from "../../store/useOnboardingStore";
 import { useRankStatsQuery } from "../../hooks/useMockQueries";
+import { useStartTimerMutation, useStopTimerMutation, useTodayStudySecondsQuery } from "../../hooks/useTimerQueries";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
 function formatElapsed(ms) {
@@ -23,6 +24,9 @@ function HomePage() {
   const resetOnboarding = useOnboardingStore((state) => state.resetOnboarding);
 
   const { data: rankStats, isLoading: isRankStatsLoading } = useRankStatsQuery();
+  const { data: todaySeconds = 0 } = useTodayStudySecondsQuery();
+  const startTimer = useStartTimerMutation();
+  const stopTimer = useStopTimerMutation();
 
   function handleLogoClick() {
     if (!window.confirm("로그아웃 하시겠습니까?")) return;
@@ -32,20 +36,31 @@ function HomePage() {
   }
 
   const [isRunning, setIsRunning] = useState(false);
-  const [elapsedMs, setElapsedMs] = useState(0);
+  const [runningMs, setRunningMs] = useState(0);
   const startedAtRef = useRef(null);
+  const elapsedMs = todaySeconds * 1000 + (isRunning ? runningMs : 0);
 
   useEffect(() => {
     if (!isRunning) return undefined;
 
-    startedAtRef.current = Date.now() - elapsedMs;
+    startedAtRef.current = Date.now();
     const interval = setInterval(() => {
-      setElapsedMs(Date.now() - startedAtRef.current);
+      setRunningMs(Date.now() - startedAtRef.current);
     }, 1000);
 
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRunning]);
+
+  function handleToggleTimer() {
+    if (isRunning) {
+      stopTimer.mutate();
+      setIsRunning(false);
+    } else {
+      setRunningMs(0);
+      startTimer.mutate();
+      setIsRunning(true);
+    }
+  }
 
   return (
     <div className="flex h-full flex-col bg-white">
@@ -101,7 +116,7 @@ function HomePage() {
           <p className="text-sm font-semibold text-red-40">{isRunning ? "정지하기" : "시작하기"}</p>
           <button
             type="button"
-            onClick={() => setIsRunning((prev) => !prev)}
+            onClick={handleToggleTimer}
             className="flex size-25 items-center justify-center rounded-full bg-red-40 shadow-lg"
           >
             <img
