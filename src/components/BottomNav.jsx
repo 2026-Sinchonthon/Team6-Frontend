@@ -10,7 +10,12 @@ const NAV_ITEMS = [
     icon: "/icons/gnb/my-school.svg",
     activeIcon: "/icons/gnb/my-school-active.svg",
   },
-  { path: "/other-school", label: "다른 학교", icon: "/icons/gnb/other-school.svg" },
+  {
+    path: "/other-school",
+    label: "다른 학교",
+    icon: "/icons/gnb/other-school.svg",
+    activeIcon: "/icons/gnb/other-school-active.svg",
+  },
   { path: "/partnership", label: "제휴", icon: "/icons/gnb/partnership.svg" },
   { path: "/my", label: "마이", icon: "/icons/gnb/my.svg" },
 ];

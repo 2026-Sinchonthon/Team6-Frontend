@@ -40,7 +40,7 @@ function Select({ label, placeholder = "선택해주세요", value, options, onC
         </button>
 
         {isOpen && (
-          <ul className="absolute top-[calc(100%+4px)] left-0 z-10 flex w-full flex-col shadow-lg">
+          <ul className="absolute top-[calc(100%+4px)] left-0 z-20 flex w-full flex-col overflow-hidden rounded-lg border border-gray-20 bg-white shadow-lg">
             {options.map((option) => (
               <li key={option.value}>
                 <button
@@ -49,7 +49,7 @@ function Select({ label, placeholder = "선택해주세요", value, options, onC
                     onChange?.(option.value);
                     setIsOpen(false);
                   }}
-                  className="flex h-10 w-full items-center rounded border border-gray-20 bg-white/95 px-4 text-left text-sm font-medium text-gray-60"
+                  className="flex h-10 w-full items-center border-b border-gray-20 bg-white px-4 text-left text-sm font-medium text-gray-60 last:border-b-0 hover:bg-gray-05"
                 >
                   {option.label}
                 </button>
