@@ -25,14 +25,6 @@
     <td><a href="https://github.com/Yun-pix5">@Yun-pix</a></td>
   </tr>
   <tr align="center">
-    <td>🍉</td>
-    <td>🍰</td>
-    <td>🐯</td>
-    <td>🐢</td>
-    <td>🦁</td>
-    <td>🐳</td>
-  </tr>
-  <tr align="center">
     <td><code>PM</code></td>
     <td><code>FE</code></td>
     <td><code>FE</code></td>
