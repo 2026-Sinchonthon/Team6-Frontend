@@ -4,6 +4,7 @@
 ### 서비스 소개
 
 <br>
+---
 
 ### 팀원 소개
 
@@ -57,7 +58,7 @@
   </tr>
 </table>
 <br>
-
+---
 <br>
 
 ### 핵심 기능
@@ -68,6 +69,7 @@
 - 👤 **마이페이지:** 계정 정보 수정, 로그인/로그아웃 기능과 함께 전체 제휴 업체들의 상세 정보와 위치를 확인할 수 있는 메뉴를 제공합니다.
 
 <br>
+---
 
 ### 기술 스택
 
@@ -75,5 +77,13 @@
 | Plan / Design | Backend | Frontend |
 | :---: | :---: | :---: |
 | <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" /> | (추가 예정) | <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" /> <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/Zustand-433E38?style=for-the-badge&logo=react&logoColor=white" /> <img src="https://img.shields.io/badge/TanStack-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" /> <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" /> <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" /> <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" /> |
+
 <br>
-      
+---
+
+### 개발 환경에서의 실행 방법
+
+<br>
+---
+
+### 배포 링크
