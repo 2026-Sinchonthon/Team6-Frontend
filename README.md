@@ -110,7 +110,63 @@ frontend/
 ```
 
 - **Backend** 
-
+```
+backend/                                                                                                                          
+  │                                                                                                                                                              
+  ├── BackendApplication.java          # 메인 진입점                                                                                                             
+  │                                                                                                                                                              
+  ├── domain/                          # 기능별 패키지 (신규 스타일)                                                                                             
+  │   ├── auth/                        # 토큰 재발급                                                                                                             
+  │   │   ├── controller/AuthController.java   (POST /api/auth/refresh)                                                                                          
+  │   │   ├── service/AuthService.java                                                                                                                           
+  │   │   └── dto/ (RefreshRequest, RefreshResponse)                                                                                                             
+  │   │                                                                                                                                                          
+  │   ├── user/                        # 온보딩 · 내 정보                                                                                                        
+  │   │   ├── entity/User.java                                                                                                                                   
+  │   │   ├── repository/UserRepository.java                                                                                                                     
+  │   │   ├── controller/UserController.java   (school/college/department PATCH, summary)                                                                        
+  │   │   ├── service/UserService.java                                                                                                                           
+  │   │   └── dto/ (SchoolUpdateRequest, CollegeUpdateRequest, DepartmentUpdateRequest, UserMeSummaryResponse)                                                   
+  │   │                                                                                                                                                          
+  │   ├── school/                      # 학교/단과대/학과 마스터 데이터                                                                                          
+  │   │   ├── entity/ (School, College, Department)                                                                                                              
+  │   │   ├── repository/                                                                                                                                        
+  │   │   ├── controller/ (SchoolCatalogController - 조회, AdminSchoolController - 관리자 등록)                                                                  
+  │   │   ├── service/SchoolCatalogService.java  
+  │   │   ├── config/SchoolCatalogInitializer.java   (서버 시작시 학교 5개 자동 시딩)                                                                            
+  │   │   └── dto/ (SchoolResponse, CollegeResponse, DepartmentResponse + Create 요청들)                                                                         
+  │   │                                                                                                                                                          
+  │   ├── schoolstat/                  # 학교별 실시간 통계 (타학교 탭용, 목업)                                                                                  
+  │   │   └── SchoolStudyStat.java, Repository                                                                                                                   
+  │   │                                                                                                                                                          
+  │   ├── partner/                     # 제휴처 엔티티                                                                                                           
+  │   │   └── Partner.java, PartnerRepository.java                                                                                                               
+  │   │                                                                                                                                                          
+  │   └── mypage/                      # 마이페이지                                                                                                              
+  │       ├── controller/MyPageController.java                                                                                                                   
+  │       ├── service/MyPageService.java                                                                                                                         
+  │       └── dto/ (MyPageResponse, MyPageProfileResponse, MyPageStudyRecordResponse)                                                                            
+  │                                                                                                                                                              
+  ├── controller / service / repository / dto / entity   # 평평한 구조 (기존 스타일)                                                                             
+  │   ├── HealthController, DevAuthController(로컬 전용), TestDataController(테스트 시더)                                                                        
+  │   ├── TimerController/Service          — 타이머 start/pause/resume/stop, StudyRecord 엔티티                                                                  
+  │   ├── RankingController/Service        — 학교/단과대/학과/개인 랭킹 + 홈 요약                                                                                
+  │   ├── SchoolOverviewController/Service — "내 학교" 개요(시즌 하드코딩 포함)                                                                                  
+  │   ├── UserStatsController/Service      — 스터디 기록 통계                                                                                                    
+  │   ├── OtherSchoolController/Service    — 타학교 탭                                                                                                           
+  │   ├── PartnerController/Service        — 제휴 탭
+  │   └── config/SampleDataInitializer.java — 학교/제휴처 목업 자동 시딩                                                                                         
+  │                                                                                                                                                              
+  └── global/                          # 공통 인프라                                                                                                             
+      ├── config/          — SecurityConfig, CorsConfig, SwaggerConfig, JpaAuditingConfig                                                                        
+      ├── security/                                                                                                                                              
+      │   ├── jwt/         — JwtTokenProvider, JwtAuthenticationFilter 등                                                                                        
+      │   ├── oauth2/      — 카카오 로그인 (CustomOAuth2UserService, SuccessHandler 등)                                                                          
+      │   ├── admin/       — 관리자 API 키 검증 (AdminKeyFilter)                                                                                                 
+      │   └── AuthUser.java                                                                                                                                      
+      ├── exception/       — BusinessException, ErrorCode, GlobalExceptionHandler                                                                                
+      └── common/          — ApiResponse(공통 응답 포맷), BaseTimeEntity
+```
 
 ---
 
