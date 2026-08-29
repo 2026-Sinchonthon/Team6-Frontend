@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   MOCK_COLLEGE_OPTIONS,
   MOCK_COLLEGE_RANKING,
+  MOCK_COUPONS,
   MOCK_DEPARTMENT_RANKING,
   MOCK_RANK_STATS,
   MOCK_SCHOOL_OVERVIEW,
@@ -54,5 +55,12 @@ export function useSinchonLeagueQuery() {
   return useQuery({
     queryKey: ["sinchonLeague"],
     queryFn: () => mockFetch(MOCK_SINCHON_LEAGUE),
+  });
+}
+
+export function useCouponsQuery() {
+  return useQuery({
+    queryKey: ["coupons"],
+    queryFn: () => mockFetch(MOCK_COUPONS),
   });
 }

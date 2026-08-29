@@ -2,6 +2,7 @@ import { useState } from "react";
 import useOnboardingStore from "../../store/useOnboardingStore";
 import { useCollegeRankingQuery, useSchoolOverviewQuery } from "../../hooks/useMockQueries";
 import Badge from "../../components/ui/Badge";
+import FilterChip from "../../components/ui/FilterChip";
 import RankingRow from "../../components/ui/RankingRow";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
@@ -70,24 +71,12 @@ function MySchoolPage() {
         </div>
 
         <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setScope("college")}
-            className={`h-[30px] rounded-lg px-2 text-xs font-bold ${
-              scope === "college" ? "bg-red-40 text-white" : "border border-red-40 bg-white text-red-40"
-            }`}
-          >
+          <FilterChip active={scope === "college"} onClick={() => setScope("college")}>
             교내 단과대 랭킹
-          </button>
-          <button
-            type="button"
-            onClick={() => setScope("department")}
-            className={`h-[30px] rounded-lg px-2 text-xs font-bold ${
-              scope === "department" ? "bg-red-40 text-white" : "border border-red-40 bg-white text-red-40"
-            }`}
-          >
+          </FilterChip>
+          <FilterChip active={scope === "department"} onClick={() => setScope("department")}>
             {college ?? "단과대"} 내 학과 랭킹
-          </button>
+          </FilterChip>
         </div>
 
         <div className="flex flex-col gap-3">
