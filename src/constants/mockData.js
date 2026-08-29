@@ -13,25 +13,26 @@ export const MOCK_SCHOOL_OVERVIEW = {
   contributionRate: 1.7,
 };
 
+// rank는 hooks/useMockQueries.js에서 hours 합계 기준으로 계산해서 채운다 (여기엔 저장하지 않음)
 export const MOCK_COLLEGE_RANKING = [
-  { rank: 1, name: "미술대학", status: "🔥 현재 120명 집중 중", hours: 5120, trend: "up", isMine: true },
-  { rank: 2, name: "공과대학", status: "현재 95명 집중중", hours: 4800, trend: "down" },
-  { rank: 2, name: "경영대학", status: "현재 82명 집중중", hours: 3950, trend: "down" },
-  { rank: 2, name: "건축도시대학", status: "현재 65명 집중중", hours: 3210, trend: "down" },
-  { rank: 2, name: "사범대학", status: "현재 65명 집중중", hours: 2840, trend: "down" },
-  { rank: 2, name: "사범대학", status: "현재 65명 집중중", hours: 2840, trend: "down" },
-  { rank: 2, name: "사범대학", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "미술대학", status: "🔥 현재 120명 집중 중", hours: 5120, trend: "up", isMine: true },
+  { name: "공과대학", status: "현재 95명 집중중", hours: 4800, trend: "down" },
+  { name: "경영대학", status: "현재 82명 집중중", hours: 3950, trend: "down" },
+  { name: "건축도시대학", status: "현재 65명 집중중", hours: 3210, trend: "down" },
+  { name: "사범대학", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "사범대학", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "사범대학", status: "현재 65명 집중중", hours: 2840, trend: "down" },
 ];
 
 export const MOCK_DEPARTMENT_RANKING = [
-  { rank: 1, name: "산업디자인전공", status: "🔥 현재 120명 집중 중", hours: 5120, trend: "up" },
-  { rank: 2, name: "시각디자인전공", status: "현재 95명 집중중", hours: 4800, trend: "down", isMine: true },
-  { rank: 2, name: "동양화과", status: "현재 82명 집중중", hours: 3950, trend: "down" },
-  { rank: 2, name: "회화과", status: "현재 65명 집중중", hours: 3210, trend: "down" },
-  { rank: 2, name: "섬유미술패션디자인과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
-  { rank: 2, name: "조소과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
-  { rank: 2, name: "금속조형디자인과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
-  { rank: 2, name: "목조형가구학과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "산업디자인전공", status: "🔥 현재 120명 집중 중", hours: 5120, trend: "up" },
+  { name: "시각디자인전공", status: "현재 95명 집중중", hours: 4800, trend: "down", isMine: true },
+  { name: "동양화과", status: "현재 82명 집중중", hours: 3950, trend: "down" },
+  { name: "회화과", status: "현재 65명 집중중", hours: 3210, trend: "down" },
+  { name: "섬유미술패션디자인과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "조소과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "금속조형디자인과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
+  { name: "목조형가구학과", status: "현재 65명 집중중", hours: 2840, trend: "down" },
 ];
 
 // 다른 학교(신촌 리그) 지도 화면 — schoolId는 constants/schools.js의 SCHOOLS[].id와 매칭

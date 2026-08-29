@@ -13,6 +13,13 @@ function mockFetch(data, delayMs = 300) {
   return new Promise((resolve) => setTimeout(() => resolve(data), delayMs));
 }
 
+// hours(누적 시간) 합계 기준으로 순위를 다시 계산한다
+// 데이터에 rank를 고정값으로 넣어두면 항목이 늘어나거나 순서가 바뀔 때 어긋나기 쉬워서,
+// 정렬 결과로 매길때마다 새로 구한다 (백엔드 연동 후에도 동일한 방식으로 계산하면 됨)
+function withRankByHours(items) {
+  return [...items].sort((a, b) => b.hours - a.hours).map((item, index) => ({ ...item, rank: index + 1 }));
+}
+
 export function useRankStatsQuery() {
   return useQuery({
     queryKey: ["rankStats"],
@@ -38,7 +45,8 @@ export function useSchoolOverviewQuery() {
 export function useCollegeRankingQuery(scope) {
   return useQuery({
     queryKey: ["collegeRanking", scope],
-    queryFn: () => mockFetch(scope === "department" ? MOCK_DEPARTMENT_RANKING : MOCK_COLLEGE_RANKING),
+    queryFn: () =>
+      mockFetch(withRankByHours(scope === "department" ? MOCK_DEPARTMENT_RANKING : MOCK_COLLEGE_RANKING)),
   });
 }
 
