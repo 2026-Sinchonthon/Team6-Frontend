@@ -47,7 +47,7 @@ function App() {
                 )
               }
             />
-            <Route path="/oauth/kakao/callback" element={<KakaoCallbackPage />} />
+            <Route path="/oauth/callback" element={<KakaoCallbackPage />} />
             <Route
               path="/onboarding/school"
               element={
