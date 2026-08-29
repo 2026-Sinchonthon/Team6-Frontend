@@ -7,7 +7,6 @@ import DepartmentDetailPage from "./pages/onboarding/DepartmentDetailPage";
 import KakaoCallbackPage from "./pages/oauth/KakaoCallbackPage";
 import HomePage from "./pages/home/HomePage";
 import { SCHOOLS } from "./constants/schools";
-import { getKakaoAuthorizeUrl } from "./lib/kakao";
 import useAuthStore from "./store/useAuthStore";
 import useOnboardingStore from "./store/useOnboardingStore";
 
@@ -39,7 +38,9 @@ function App() {
                   <Navigate to="/home" replace />
                 ) : (
                   <SplashPage
-                    onKakaoLogin={() => (window.location.href = getKakaoAuthorizeUrl())}
+                    onKakaoLogin={() =>
+                      (window.location.href = `${import.meta.env.VITE_API_BASE_URL}/oauth2/authorization/kakao`)
+                    }
                     onSkipLogin={() => navigate("/onboarding/school")}
                   />
                 )

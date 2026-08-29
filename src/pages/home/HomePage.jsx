@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import RankStatCard from "../../components/ui/RankStatCard";
 import useOnboardingStore from "../../store/useOnboardingStore";
+import { useRankStatsQuery } from "../../hooks/useMockQueries";
 import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
 function formatElapsed(ms) {
@@ -15,6 +16,8 @@ function HomePage() {
   const school = useOnboardingStore((state) => state.school);
   const college = useOnboardingStore((state) => state.college);
   const department = useOnboardingStore((state) => state.department);
+
+  const { data: rankStats, isLoading: isRankStatsLoading } = useRankStatsQuery();
 
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedMs, setElapsedMs] = useState(0);
@@ -49,15 +52,27 @@ function HomePage() {
         </div>
 
         <div className="flex justify-center">
-          <RankStatCard badgeLabel="신촌 5개 대학" title="학교 종합" value="2위" subtext="총 24,530h" showDivider />
+          <RankStatCard
+            badgeLabel="신촌 5개 대학"
+            title="학교 종합"
+            value={isRankStatsLoading ? "-" : `${rankStats.schoolRank.rank}위`}
+            subtext={isRankStatsLoading ? "-" : `총 ${rankStats.schoolRank.totalHours.toLocaleString()}h`}
+            showDivider
+          />
           <RankStatCard
             badgeLabel="홍익대 단과대"
             title={college ?? "단과대"}
-            value="1위"
-            subtext="총 5,120h"
+            value={isRankStatsLoading ? "-" : `${rankStats.collegeRank.rank}위`}
+            subtext={isRankStatsLoading ? "-" : `총 ${rankStats.collegeRank.totalHours.toLocaleString()}h`}
             showDivider
           />
-          <RankStatCard badgeLabel={department ?? "학과"} title="나의 순위" value="12위" subtext="내 누적 32h" accent />
+          <RankStatCard
+            badgeLabel={department ?? "학과"}
+            title="나의 순위"
+            value={isRankStatsLoading ? "-" : `${rankStats.myRank.rank}위`}
+            subtext={isRankStatsLoading ? "-" : `내 누적 ${rankStats.myRank.cumulativeHours}h`}
+            accent
+          />
         </div>
       </div>
 
@@ -86,7 +101,9 @@ function HomePage() {
         </div>
 
         <div className="rounded-xl bg-red-05 px-2 py-2">
-          <p className="text-xs font-semibold text-[#4a5568]">🔥 {college ?? "단과대"} 내 1위 달성 중!</p>
+          <p className="text-xs font-semibold text-[#4a5568]">
+            🔥 {college ?? "단과대"} 내 {isRankStatsLoading ? "-" : `${rankStats.collegeRank.rank}위`} 달성 중!
+          </p>
         </div>
       </div>
     </div>
