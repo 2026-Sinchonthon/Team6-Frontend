@@ -176,3 +176,5 @@ backend/
 ---
 
 ### 🚀 배포 링크
+
+https://sinchonthon-team6.vercel.app/ 
