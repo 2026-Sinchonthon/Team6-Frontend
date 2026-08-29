@@ -5,10 +5,16 @@ const useAuthStore = create(
   persist(
     (set) => ({
       accessToken: null,
+      refreshToken: null,
       isAuthenticated: false,
 
-      setAuth: (accessToken) => set({ accessToken, isAuthenticated: true }),
-      clearAuth: () => set({ accessToken: null, isAuthenticated: false }),
+      setAuth: (accessToken, refreshToken) =>
+        set((state) => ({
+          accessToken,
+          refreshToken: refreshToken ?? state.refreshToken,
+          isAuthenticated: true,
+        })),
+      clearAuth: () => set({ accessToken: null, refreshToken: null, isAuthenticated: false }),
     }),
     { name: "syntime-auth" },
   ),

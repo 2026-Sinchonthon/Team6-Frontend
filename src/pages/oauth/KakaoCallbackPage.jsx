@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { loginWithKakao } from "../../api/auth";
+import { getMySummary } from "../../api/user";
 import useAuthStore from "../../store/useAuthStore";
 import useOnboardingStore from "../../store/useOnboardingStore";
 import LoadingState from "../../components/state/LoadingState";
@@ -15,27 +15,28 @@ function KakaoCallbackPage() {
   const requestedRef = useRef(false);
 
   useEffect(() => {
-    const code = searchParams.get("code");
-    if (!code || requestedRef.current) return;
+    const accessToken = searchParams.get("accessToken");
+    const refreshToken = searchParams.get("refreshToken");
+    if (!accessToken || requestedRef.current) return;
     requestedRef.current = true;
 
-    loginWithKakao(code)
-      .then(({ accessToken, isNewUser, school, college, department }) => {
-        setAuth(accessToken);
+    setAuth(accessToken, refreshToken);
 
-        if (isNewUser) {
+    getMySummary()
+      .then((summary) => {
+        if (!summary.schoolId) {
           navigate("/onboarding/school", { replace: true });
           return;
         }
 
-        hydrateOnboarding({ school, college, department });
+        hydrateOnboarding(summary);
         navigate("/home", { replace: true });
       })
       .catch(() => setIsError(true));
   }, [searchParams, navigate, setAuth, hydrateOnboarding]);
 
   if (isError) {
-    return <EmptyState message="카카오 로그인에 실패했습니다." />;
+    return <EmptyState message="로그인 처리에 실패했습니다." />;
   }
 
   return <LoadingState />;

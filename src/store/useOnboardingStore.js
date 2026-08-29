@@ -18,8 +18,13 @@ const useOnboardingStore = create(
       setDepartment: (department) => set({ department }),
       completeOnboarding: () => set({ isOnboarded: true }),
       resetOnboarding: () => set(initialState),
-      hydrate: ({ school, college, department }) =>
-        set({ school, college, department, isOnboarded: true }),
+      hydrate: ({ schoolId, schoolName, collegeId, collegeName, departmentId, departmentName }) =>
+        set({
+          school: schoolId ? { id: schoolId, name: schoolName } : null,
+          college: collegeId ? { id: collegeId, name: collegeName } : null,
+          department: departmentId ? { id: departmentId, name: departmentName } : null,
+          isOnboarded: Boolean(schoolId),
+        }),
     }),
     {
       name: "syntime-onboarding",
