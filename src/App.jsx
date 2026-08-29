@@ -9,6 +9,8 @@ import HomePage from "./pages/home/HomePage";
 import MySchoolPage from "./pages/mySchool/MySchoolPage";
 import OtherSchoolPage from "./pages/otherSchool/OtherSchoolPage";
 import PartnershipPage from "./pages/partnership/PartnershipPage";
+import MyPage from "./pages/mypage/MyPage";
+import AccountSettingsPage from "./pages/mypage/AccountSettingsPage";
 import { SCHOOLS } from "./constants/schools";
 import useAuthStore from "./store/useAuthStore";
 import useOnboardingStore from "./store/useOnboardingStore";
@@ -91,6 +93,21 @@ function App() {
             <Route path="/my-school" element={<MySchoolPage />} />
             <Route path="/other-school" element={<OtherSchoolPage />} />
             <Route path="/partnership" element={<PartnershipPage />} />
+            <Route
+              path="/my"
+              element={
+                <MyPage
+                  onEditProfile={() => navigate("/onboarding/department")}
+                  onOpenAccountSettings={() => navigate("/my/account")}
+                />
+              }
+            />
+            <Route
+              path="/my/account"
+              element={
+                <AccountSettingsPage onBack={() => navigate("/my")} onLoggedOut={() => navigate("/")} />
+              }
+            />
           </Routes>
         </PageContainer>
 

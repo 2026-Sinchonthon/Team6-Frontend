@@ -56,8 +56,11 @@ function DepartmentDetailPage({ school, onChangeSchool, onSubmit }) {
           disabled={!isComplete}
           onClick={() =>
             onSubmit?.({
-              college: collegeOptions.find((option) => option.value === college)?.label ?? college,
-              department,
+              college: {
+                id: college,
+                name: collegeOptions.find((option) => option.value === college)?.label ?? college,
+              },
+              department: { id: null, name: department },
             })
           }
         >

@@ -6,6 +6,8 @@ import {
   MOCK_DEPARTMENT_RANKING,
   MOCK_RANK_STATS,
   MOCK_SCHOOL_OVERVIEW,
+  MOCK_STUDY_RECORD,
+  MOCK_USER_PROFILE,
 } from "../constants/mockData";
 
 // 백엔드 연동 시 이 파일의 queryFn만 실제 API 호출(src/api)로 교체하기
@@ -54,5 +56,19 @@ export function useCouponsQuery() {
   return useQuery({
     queryKey: ["coupons"],
     queryFn: () => mockFetch(MOCK_COUPONS),
+  });
+}
+
+export function useUserProfileQuery() {
+  return useQuery({
+    queryKey: ["userProfile"],
+    queryFn: () => mockFetch(MOCK_USER_PROFILE),
+  });
+}
+
+export function useStudyRecordQuery() {
+  return useQuery({
+    queryKey: ["studyRecord"],
+    queryFn: () => mockFetch(MOCK_STUDY_RECORD),
   });
 }

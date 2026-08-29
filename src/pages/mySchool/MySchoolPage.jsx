@@ -56,7 +56,7 @@ function MySchoolPage() {
             <div className="flex flex-col items-start gap-1 rounded-xl border border-[#d9d9d9] px-6 py-3">
               <Badge>상위 {isOverviewLoading ? "-" : overview.contributionPercentile}%</Badge>
               <p className="text-sm text-gray-60">
-                {department ?? "학과"} 총 누적 시간의{" "}
+                {department?.name ?? "학과"} 총 누적 시간의{" "}
                 <span className="font-bold">{isOverviewLoading ? "-" : overview.contributionRate}%</span> 기여 중!
               </p>
             </div>
@@ -75,7 +75,7 @@ function MySchoolPage() {
             교내 단과대 랭킹
           </FilterChip>
           <FilterChip active={scope === "department"} onClick={() => setScope("department")}>
-            {college ?? "단과대"} 내 학과 랭킹
+            {college?.name ?? "단과대"} 내 학과 랭킹
           </FilterChip>
         </div>
 
