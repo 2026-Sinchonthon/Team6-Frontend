@@ -1,5 +1,5 @@
-import KakaoLoginButton from "../components/ui/KakaoLoginButton";
-import { SAFE_AREA_TOP } from "../lib/safeArea";
+import KakaoLoginButton from "../../components/ui/KakaoLoginButton";
+import { SAFE_AREA_TOP } from "../../lib/safeArea";
 
 function SplashPage({ onKakaoLogin }) {
   return (
