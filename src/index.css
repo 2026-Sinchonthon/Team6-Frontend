@@ -1,0 +1,67 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+@import "tailwindcss";
+
+@theme {
+  /* Font */
+  --font-sans:
+    "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+
+  /* Text size — Figma Typography frame (line-height 130% for every size) */
+  --text-20: 20px;
+  --text-20--line-height: 1.3;
+  --text-18: 18px;
+  --text-18--line-height: 1.3;
+  --text-16: 16px;
+  --text-16--line-height: 1.3;
+  --text-14: 14px;
+  --text-14--line-height: 1.3;
+  --text-12: 12px;
+  --text-12--line-height: 1.3;
+
+  /* Letter spacing — Figma Typography frame (tracking tied to font weight) */
+  --tracking-bold: 0.02em;
+  --tracking-semibold: 0em;
+  --tracking-medium: 0.01em;
+  --tracking-regular: 0.02em;
+
+  /* Color — Figma Color System frame ('색상명' + '컬러칩 숫자') */
+  --color-black: #171a1f;
+  --color-white: #ffffff;
+
+  --color-gray-05: #f7f7f8;
+  --color-gray-10: #e6e8ea;
+  --color-gray-20: #ccd1d5;
+  --color-gray-30: #b0b8bf;
+  --color-gray-40: #8e99a4;
+  --color-gray-50: #6d7b87;
+  --color-gray-60: #56616b;
+  --color-gray-80: #34373e;
+
+  --color-blue-05: #e6f9ff;
+  --color-blue-25: #81e0fd;
+  --color-blue-50: #03c1fb;
+  --color-blue-60: #029bca;
+  --color-blue-70: #027497;
+
+  --color-green-05: #e6fff3;
+  --color-green-25: #81fdc5;
+  --color-green-50: #03fb8a;
+  --color-green-70: #029753;
+
+  --color-red-02: #fff5f5;
+  --color-red-05: #ffe5e5;
+  --color-red-25: #ff8080;
+  --color-red-40: #ff3333;
+  --color-red-70: #990000;
+
+  --color-yellow-05a: #fff8e5;
+  --color-yellow-25a: #ffdd80;
+  --color-yellow-50a: #ffbb00;
+  --color-yellow-50b: #ffa500;
+  --color-yellow-50k: #fee500;
+
+  --color-violet-02: #f9f6fd;
+  --color-violet-20: #c2a9ef;
+  --color-violet-45: #753ddb;
+}
