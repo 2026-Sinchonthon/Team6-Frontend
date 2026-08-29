@@ -1,6 +1,9 @@
 # Sin:Time
-*신촌을 더욱 🔥 불타게 🔥 만들어주는 서비스,*
+> *신촌을 더욱 🔥 불타게 🔥 만들어주는 서비스*
+<br>
 본 서비스는 대학생들의 개인 공부 시간에 지역 기반의 랭킹 시스템과 실질적인 상권 혜택을 결합한 오프라인 연계형 학습 동기부여 플랫폼 **Sin:Time**입니다.
+<br>
+
 <img width="1920" height="1080" alt="SinTime" src="https://github.com/user-attachments/assets/cf80a8e2-f01f-42a1-b7a7-a8353b9123b0" />
 
 ### ⭐️ 서비스 소개
