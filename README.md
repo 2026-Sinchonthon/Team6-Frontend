@@ -84,7 +84,8 @@
       페이지 UI 구현
     </td>
     <td>
-      추후작성
+      API 설계<br>
+      주요 기능 구현
     </td>
     <td>
       추후작성
@@ -177,6 +178,21 @@ backend/
       ├── exception/       — BusinessException, ErrorCode, GlobalExceptionHandler                                                                                
       └── common/          — ApiResponse(공통 응답 포맷), BaseTimeEntity
 ```
+
+### **도메인 구성**
+
+ | 도메인 범위 | 설명 |
+| --- | --- |
+| Auth | 카카오 OAuth 로그인, JWT 발급, 토큰 재발급 |
+| User | 내 프로필/소속 요약 조회, 학교·단과대·학과 설정 |
+| School | 학교·단과대·학과 목록 조회, 관리자용 학교 데이터 등록 |
+| Timer | 공부 타이머 시작·일시정지·재시작·종료, 오늘 공부 시간 조회 |
+| Ranking | 학교·단과대·학과·개인 랭킹 조회, 홈 랭킹 요약 |
+| MySchool | 내 학교 개요, 경쟁 회차/남은 시간/기여도 조회 |
+| OtherSchool | 타학교 목록 및 상세 조회, 학교별 총 공부시간·활성 인원 조회 |
+| Partner | 제휴처 목록·상세·대표 제휴처 조회, 혜택/지도 URL/점령 문구 제공 |
+| MyPage | 마이페이지 프로필 및 스터디 기록 목업 조회 |
+| Dev/Test | 개발용 토큰 발급, 테스트 사용자 시딩 |
 
 ---
 
