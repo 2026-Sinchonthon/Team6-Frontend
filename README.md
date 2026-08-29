@@ -89,7 +89,7 @@ frontend/
 ├── src/
 │   ├── api/          # 비동기 API 요청 모듈   
 │   ├── components/   # 페이지별 UI 컴포넌트
-│   ├── constants/   # 변하지 않는 상수, mockdata 모음
+│   ├── constants/    # 학교 이름 등 변하지 않는 상수 모음
 │   ├── hooks/        # TanStack Query Custom Hooks 및 재사용 커스텀 훅
 │   ├── pages/        # 라우팅 기반 주요 화면 페이지
 │   ├── store/        # Zustand 기반 클라이언트 전역 상태 스토어
