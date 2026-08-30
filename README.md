@@ -1,6 +1,7 @@
 # Sin:Time
 > *신촌을 더욱 🔥 불타게 🔥 만들어주는 서비스*
 <br>
+2026 신촌톤 은상 수상작 
 
 
 <img width="1920" height="1080" alt="SinTime" src="https://github.com/user-attachments/assets/cf80a8e2-f01f-42a1-b7a7-a8353b9123b0" />
